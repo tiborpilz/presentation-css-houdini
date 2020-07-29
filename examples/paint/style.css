@@ -1,0 +1,9 @@
+.avenga-footer {
+  --timestep: 0;
+  background-image: paint(avenga);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 400px;
+}
