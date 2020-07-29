@@ -1,5 +1,5 @@
 .avenga-footer {
-  --timestep: 0;
+  --timestep: 500;
   background-image: paint(avenga);
   position: absolute;
   left: 0;
