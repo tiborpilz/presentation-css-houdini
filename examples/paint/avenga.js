@@ -1,12 +1,12 @@
 function paintBezier(ctx, geom, progress) {
   let start = { x: 0, y: geom.height/2  };
   let cp1 = {
-    x: Math.round(geom.width*(progress**2)),
-    y: geom.height/(2 + Math.sin(3.14*progress))
+    x: geom.width*(progress**2),
+    y: geom.height/(2 + 1.5*Math.sin(3.14*progress))
   };
 
   let cp2 = {
-    x: Math.round(geom.width*(progress**0.5)),
+    x: geom.width*(progress**0.5),
     y: geom.height/(2 - Math.sin(3.14*progress))
   };
 
@@ -26,20 +26,21 @@ class AvengaPainter {
   static get inputProperties() { return ['--timestep'] }
 
   paint(ctx, geom, props, args) {
+    const width=parseFloat(geom.width)
+    const height=parseFloat(geom.height)
     ctx.globalCompositeOperation = 'multiply';
     const cyan = 'rgb(0,176,255)'
     const magenta = 'rgb(255,0,205)'
     const yellow = 'rgb(255,194,0)'
     const colors = [cyan, magenta, yellow]
 
-    const timestep = props.get('--timestep')
-    const progress = (timestep % 1000) / 1000
+    const timestep = parseFloat(props.get('--timestep'))
+    const progress = timestep
 
     colors.forEach((color, index) => {
-      console.log(color)
       ctx.fillStyle = color;
       ctx.beginPath()
-      paintBezier(ctx, geom, progress**index)
+      paintBezier(ctx, geom, progress**(index+1))
       ctx.fill()
     })
   }

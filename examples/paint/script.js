@@ -1,8 +1,8 @@
 CSS.paintWorklet.addModule('avenga.js');
 
-function animate() {
-  document.querySelector('.avenga-footer').style.setProperty('--timestep', new Date().getTime() % 1000);
-  requestAnimationFrame(animate)
-}
-
-animate()
+window.CSS.registerProperty({
+    name: '--timestep',
+    syntax: '<number>',
+    inherits: false,
+    initialValue: 0,
+});
