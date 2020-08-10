@@ -4,12 +4,9 @@ title: Houdini CSS
 date: 28.07.2020
 ---
 
+:smile:
+
 # CSS Houdini
-
-
-Tibor Pilz
-Avenga GmbH
-Juli 2020
 
 ---
 
