@@ -1,2 +1,0 @@
-from: markdown+emoji
-to: html5
