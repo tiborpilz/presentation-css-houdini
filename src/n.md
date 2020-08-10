@@ -1,6 +1,6 @@
-% Title
+% Pandoc Demo
 % Tibor Pilz
-% yyyy/mm/dd
+% 2020/08/11
 
 # Header1
 
@@ -9,6 +9,7 @@
 ### Header3
 
 - foo
+- bar 2
 - bar
 - foobar
 
@@ -20,13 +21,9 @@
 2. bar
 3. baz
 
-# HEADER
-
 ---
 
-_foo_
-__bar__
-___baz___
+# header
 
 [foobar_link](https://github.com/hakimes/reveal.js/#full-setup)
 
