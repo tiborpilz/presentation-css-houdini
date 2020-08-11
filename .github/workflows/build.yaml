@@ -6,6 +6,10 @@ jobs:
     name: Pandoc build
     runs-on: ubuntu-18.04
     steps:
+      - name: ls
+        run:
+          - ls
       - uses: docker://pandoc/core:2.9
         with:
-          entrypoint: ../../ops/build
+          # entrypoint: ../../ops/build
+          args: -t revealjs -s presentation/slides.md -o dist/index.html -i -V transition=none
