@@ -7,8 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: ls
-        run:
-          - ls
+        run: ls
       - uses: docker://pandoc/core:2.9
         with:
           # entrypoint: ../../ops/build
