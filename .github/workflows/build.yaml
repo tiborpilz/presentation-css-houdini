@@ -8,6 +8,11 @@ jobs:
     steps:
       - name: ls
         run: ls
+      - name: pwd
+        run: pwd
+      - uses: docker://pandoc/core:2.9
+        with:
+          entrypoint: pwd
       - uses: docker://pandoc/core:2.9
         with:
           # entrypoint: ../../ops/build
