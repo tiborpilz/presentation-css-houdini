@@ -9,4 +9,4 @@ jobs:
       - uses: docker://pandoc/core:2.9
         with:
           entrypoint: /bin/sh
-          args: ./ops/build
+          args: /github/workspace/ops/build
