@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 mkdir -p dist/
 pandoc -t revealjs -s presentation/slides.md -o dist/index.html -i -V transition=none
