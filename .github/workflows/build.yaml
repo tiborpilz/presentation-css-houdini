@@ -6,15 +6,19 @@ jobs:
     name: Pandoc build
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
-      - name: ls
-        run: ls
-      - name: pwd
-        run: pwd
-      - uses: docker://pandoc/core:2.9
-        with:
-          entrypoint: pwd
-      - uses: docker://pandoc/core:2.9
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Build
+        uses: docker://pandoc/core:2.9
         with:
           entrypoint: ./ops/build
-          # args: -t revealjs -s ./presentation/slides.md -o ./dist/index.html -i -V transition=none
+
+      - name: Deploy
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
