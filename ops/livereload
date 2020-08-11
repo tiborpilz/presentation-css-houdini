@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+fswatch --exclude dist --exclude .git . | xargs -n1 $ABSDIR/build
