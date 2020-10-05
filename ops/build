@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
 mkdir -p dist/
-pandoc -t revealjs -s presentation/**.md -o dist/index.html -i -V revealjs-url=https://revealjs.com -V transition=none --bibliography=bibliography.bib -V center=false -V width='1920' -V theme=beige --slide-level=2
-echo "[$(date)] [pandoc] Done building"
+pandoc -t revealjs -s presentation/**.md -o dist/index.html -i \
+  -V revealjs-url=https://unpkg.com/reveal.js@4.0.2 \
+  -V transition=none \
+  -V center=false \
+  -V width='1920' \
+  -V theme=beige \
+  --bibliography=bibliography.bib \
+  --slide-level=2
