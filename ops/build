@@ -3,4 +3,3 @@
 mkdir -p dist/
 pandoc -t revealjs -s presentation/slides.md -o dist/index.html -i -V transition=none
 echo "[$(date)] [pandoc] Done building"
-

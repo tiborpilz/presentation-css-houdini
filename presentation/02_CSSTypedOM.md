@@ -1,28 +1,34 @@
-# CSS Typed OM 
+---
+title: CSS Houdini - CSSOM
+author: Tibor Pilz
+date: 05.10.2020
+---
+
+<!-- # CSS Typed OM 
 
 (https://developers.google.com/web/updates/2018/03/cssom#parsing)
 
 1. Das CSSOM
 1. Styles zugreifen, Styles schreiben
 1. Moegliche Werte
-1. Parsing
+1. Parsing -->
 
-## Das CSSOM
+# Das CSSOM
+
+```js
+  const el = document.getElementById('test-element')
+  el.style.opacity = 0.3
+  el.style.fontSize = '24px'
+  console.log(typeof el.style.opacity) // 'string'
+```
 
 - CSS hat ein object model (CSSOM) (https://developer.mozilla.org/en-US/docs/Web/API/CSS_Object_Model/Using_dynamic_styling_information)
 - Der Zugriff erfolgt ueber das `style`-Attribut:
 
-```js
-const el = document.getElementById('test-element')
-el.style.opacity = 0.3
-el.style.fontSize = '24px'
-```
-
 - Diese Attribute (`.opacity`, `background-color`) sind *immer* Strings.
+- ```js
+  ```
 
-```js
-console.log(typeof el.style.opacity) // 'string'
-```
 
 - Das kann zu klassischen JavaScript-Bugs fuehren
 
@@ -47,9 +53,9 @@ el.style.opacity = parsedOpacity + 0.1
 
 - Ausserdem ist es extrem unhandlich, nach allen moeglichen Einheiten zu testen, indem ein String ueberprueft wird. 
  
-## CSS Typed OM API
+# CSS Typed OM API
 
-### Auf Werte zugreifen / Werte schreiben
+## Auf Werte zugreifen / Werte schreiben
 
 - per `attributeStyleMap.set` und `.get` lassen sich Styles schreiben und gesetzte Styles auslesen.
 
@@ -69,20 +75,20 @@ footer.attributeStyleMap.set('fontSize', CSS.px(29))
 footer.attributeStyleMap.set('fontSize', '29px') // Just as valid
 ```
 
-### Auf Computed Styles zugreifen
+## Auf Computed Styles zugreifen
 
 - Aequivalent zu `window.getComputedStyle(el)` kann `el.computedStyleMap().get` genutzt werden.
 <!-- - Achtung: Das Typed OM gibt im gegensatz zum CSSOM 'computed' statt 'resolved' Werte zurueck.
   z.B. gibt Typed OM Prozentwerte anstelle von aufgeloesten Laengeneinheiten zurueck.  -->
 
 
-## CSSStyleValues
+# CSSStyleValues
 
 - Zahlen werden in zwei Arten dargestellt:
   1. `CSSUnitValue`: z.B. "42px"
   1. `CSSMathValue`: z.B. "calc(56em + 10%)"
 
-### CSSUnitValues
+## CSSUnitValues
 - Um `CSSUnitValue`s zu erstellen, existieren (unter Anderem) diese Factory-Methoden:
 
 ```js
@@ -110,7 +116,7 @@ const {value, unit} = CSS.ms(300);
 const {value, unit} = new CSSUnitValue(10, 'px')
 ```
 
-### CSSMathValues
+# CSSMathValues
 
 - fuer `CSSMathValues` existieren keine Factory-Methoden, weswegen immer der Konstruktor genutzt werden muss
 
@@ -122,7 +128,7 @@ cssSum.toString() // "calc(100vw + -10px)"
 
 - aehnliche Konstruktor gibt es fuer andere CSS calc Ausdruecke, also `CSSMathNegate`, `CSSMathInvert`, `CSSMathProduct` usw.
 
-### CSSMathValues - Nested
+## CSSMathValues - Nested
 - calc-Ausdruecke mit mehreren Operatoren lassen sich mit verschachtelten Konstruktoren ausdruecken:
 
 ```js
@@ -136,7 +142,7 @@ const calculation = new CSSMathSum(
 calculation.toString() // "calc(1px - 2 * 3em)"
 ```
 
-### CSSStyleValues - Beyond
+## CSSStyleValues - Beyond
 - CSSStyleValues unterstuetzen weitere Features, wie:
   1. calc-shorthand:
     ```js
