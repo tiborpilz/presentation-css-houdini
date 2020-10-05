@@ -1,25 +1,22 @@
 # Das CSS Typed Object Model
 
-
-# Das CSSOM
-[@mdnCSSObjectModel]
-
 ```js
-  const el = document.getElementById('test-element')
-  el.style.opacity = 0.3
+  const el = document.getElementById('test-element') el.style.opacity = 0.3
   el.style.fontSize = '24px'
-  console.log(typeof el.style.opacity) // 'string'
 ```
 - CSS hat ein object model (CSSOM)
 - Der Zugriff erfolgt ueber das `style`-Attribut
 
-# Probleme des CSSOMs
+## Probleme des CSSOMs
+```js
+  console.log(typeof el.style.opacity) // 'string'
+```
 
 ```js
   el.style.opacity += 0.1
   console.log(el.style.opacity) // '0.30.1' - wat
 ```
-- Diese Attribute (`opacity`, `background-color`) sind *immer* Strings.
+- Diese Attribute sind *immer* Strings.
 
 ## Probleme des CSSOMs, zweiter Teil
 ::: notes
@@ -39,12 +36,14 @@ const parsedOpacity = parseFloat(opacity)
 el.style.opacity = parsedOpacity + 0.1
 ```
 
+- die Arbeit mit Werten mit Einheit ist aufwendig, da permanent ein String geparsed oder serialisiert werden muss
+
 
 # CSS Typed OM - attributeStyleMap
 
 ::: notes
 
-Per `attributeStyleMap.set` und `.get` lassen sich Styles schreiben und gesetzte Styles auslesen.
+Per `attributeStyleMap.set` und `.get` lassen sich Styles setzen und gesetzte Styles auslesen.
 
 :::
 
@@ -55,13 +54,13 @@ el.attributeStyleMap.get('fontSize').unit // 'px'
 ```
 
 - `el.attributeStyleMap.get` gibt eine `CSSUnitValue` mit einer `value` und einer `unit` zurueck
-- mehr zu der `CSSUnitValue` spaeter
 
-# CSS Typed OM API Werte schreiben
+# CSS Typed OM Werte setzen
 
 ::: notes
 
 Sinnvoll ist es, `el.attributeStyleMap.set` auch eine `CSSUnitValue` zu uebergeben.
+Eine Erlaeuterung zur `CSSUnitValue` folgt spaeter.
 
 :::
 
@@ -91,10 +90,12 @@ el.computedStyleMap().get('fontSize') // the new hotness
 # CSSStyleValues
 
 - Zahlen werden in zwei Arten dargestellt:
-  1. `CSSUnitValue`: z.B. "42px"
-  1. `CSSMathValue`: z.B. "calc(56em + 10%)"
+  1. `CSSUnitValue`: entspricht z.B. "42px"
+  1. `CSSMathValue`: entspricht z.B. "calc(56em + 10%)"
 
 # CSSUnitValues
+
+- Um `CSSUnitValue`s zu erstellen, existieren (unter Anderem) diese Factory-Methoden:
 
 ```js
 const {value, unit} = CSS.number('10');
@@ -110,9 +111,10 @@ const {value, unit} = CSS.percent('10');
 // value === 10, unit === 'percent'
 ```
 
-- Um `CSSUnitValue`s zu erstellen, existieren (unter Anderem) diese Factory-Methoden:
-
 ## CSSUnitValues - Alternativ:
+
+- alternativ kann der Konstruktor direkt aufgerufen werden
+
 ```js
 const {value, unit} = new CSSUnitValue(10, 'number')
 // value === 10, unit === 'number'
@@ -129,18 +131,16 @@ const {value, unit} = new CSSPercentValue('10')
 
 # CSSMathValues
 
-- fuer `CSSMathValues` existieren keine Factory-Methoden, weswegen immer der Konstruktor genutzt werden muss
-
 ```js
 const cssSum = new CSSMathSum(CSS.vw(100), CSS.px(-10))
 
 cssSum.toString() // "calc(100vw + -10px)"
 ```
 
-- aehnliche Konstruktor gibt es fuer andere CSS calc Ausdruecke, also `CSSMathNegate`, `CSSMathInvert`, `CSSMathProduct` usw.
+- fuer `CSSMathValues` existieren keine Factory-Methoden, weswegen immer der Konstruktor genutzt werden muss
+- aehnliche Klassen gibt es fuer andere CSS calc Ausdruecke, also `CSSMathNegate`, `CSSMathInvert`, `CSSMathProduct` usw.
 
 ## CSSMathValues - Nested
-- calc-Ausdruecke mit mehreren Operatoren lassen sich mit verschachtelten Konstruktoren ausdruecken:
 
 ```js
 const calculation = new CSSMathSum(
@@ -153,21 +153,34 @@ const calculation = new CSSMathSum(
 calculation.toString() // "calc(1px - 2 * 3em)"
 ```
 
+- calc-Ausdruecke mit mehreren Operatoren lassen sich mit verschachtelten Konstruktoren ausdruecken:
+
 # CSSStyleValues - Beyond
+
 - CSSStyleValues unterstuetzen weitere Features, wie:
-  1. calc-shorthand:
-    ```js
-    CSS.px(1).add(CSS.px(2)) // { value: 3, unit: 'px' }
-    CSS.px(1).add(CSS.vw(50)).toString() // "calc(1px + 50vw)"
-    ```
-  1. length unit conversion:
-    ```js
-    CSS.px(1).to('mm') // { value: 0.26444, unit: "mm" }
-    ```
-  1. Equality checks:
-    <!-- ```js
-    const width = CSS.px(200)
-    CSS.px(200).equals(width) // true
-    ``` -->
-  1. CSS Transform Values
-  1. CSS Position Values
+
+## CSS calc shorthand
+::: notes
+  Anstatt einen CSSMathAdd-Konstruktor zu verwenden, koennen die Funktionsaufrufe auch gechained werden.
+  Praktisch hier ist, dass die Arithmetik zweier gleicher Einheiten automatisch das Ergebnis zurueckgibt,
+  die zweier ungleichen Einheiten jedoch eine Instanz von `CSSMathValue`.
+:::
+
+```js
+  CSS.px(1).add(CSS.px(2)) // { value: 3, unit: 'px' }
+  CSS.px(1).add(CSS.vw(50)).toString() // "calc(1px + 50vw)"
+```
+
+## Laengeneinheitsumrechnung
+```js
+  CSS.px(1).to('mm') // { value: 0.26444, unit: "mm" }
+```
+
+## Gleichheitsberechnung
+```js
+  const width = CSS.px(200)
+  CSS.px(200).equals(width) // true
+```
+
+- Positionswerte
+- Transformationswerte
