@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
 mkdir -p dist/
-pandoc -t revealjs -s presentation/**.md -o dist/index.html -i -V transition=none --bibliography=bibliography.bib -V center=false -V width=75% -V theme=beige --slide-level=2
+pandoc -t revealjs -s presentation/**.md -o dist/index.html -i -V transition=none --bibliography=bibliography.bib -V center=false -V width='1920' -V theme=beige --slide-level=2
 echo "[$(date)] [pandoc] Done building"

@@ -69,16 +69,10 @@ function paintBezier(ctx, geom, perturbation, progress) {
 
   // Yellow
   ctx.fillStyle = 'rgb(255,255,0)';
-  const y = yellowProgress(progress, geom.width, geom.height)
 
   ctx.beginPath()
   ctx.moveTo(start.x, start.y)
   ctx.lineTo(end.x, end.y)
-  // ctx.bezierCurveTo(
-  //   y.cp1.x, y.cp1.y,
-  //   y.cp2.x, y.cp2.y,
-  //   end.x, end.y
-  // )
   ctx.lineTo(geom.width, geom.height)
   ctx.lineTo(0, geom.height)
   ctx.closePath()

@@ -4,15 +4,12 @@
   const el = document.getElementById('test-element') el.style.opacity = 0.3
   el.style.fontSize = '24px'
 ```
-- CSS hat ein object model (CSSOM)
+- CSS hat ein object model (CSSOM) [@mdnCSSObjectModel]
 - Der Zugriff erfolgt ueber das `style`-Attribut
 
 ## Probleme des CSSOMs
 ```js
   console.log(typeof el.style.opacity) // 'string'
-```
-
-```js
   el.style.opacity += 0.1
   console.log(el.style.opacity) // '0.30.1' - wat
 ```
@@ -137,7 +134,6 @@ const cssSum = new CSSMathSum(CSS.vw(100), CSS.px(-10))
 cssSum.toString() // "calc(100vw + -10px)"
 ```
 
-- fuer `CSSMathValues` existieren keine Factory-Methoden, weswegen immer der Konstruktor genutzt werden muss
 - aehnliche Klassen gibt es fuer andere CSS calc Ausdruecke, also `CSSMathNegate`, `CSSMathInvert`, `CSSMathProduct` usw.
 
 ## CSSMathValues - Nested
@@ -157,7 +153,7 @@ calculation.toString() // "calc(1px - 2 * 3em)"
 
 # CSSStyleValues - Beyond
 
-- CSSStyleValues unterstuetzen weitere Features, wie:
+- CSSStyleValues unterstuetzen weitere Features[@mdnCSSTypedObject], wie:
 
 ## CSS calc shorthand
 ::: notes
