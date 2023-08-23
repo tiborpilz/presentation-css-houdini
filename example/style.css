@@ -1,0 +1,14 @@
+.color-footer {
+  --progress: 0;
+  background-image: paint(colorborder);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 400px;
+  transition: --progress 1s ease;
+}
+
+.color-footer:hover {
+  --progress: 1.0;
+}
