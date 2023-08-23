@@ -93,24 +93,6 @@ const { value, unit } = CSS.percent('10');
 // value === 10, unit === 'percent'
 ```
 
-# CSSUnitValues - Alternative:
-
-- Alternatively, the constructor can be called directly
-
-```js
-const { value, unit } = new CSSUnitValue(10, 'number');
-// value === 10, unit === 'number'
-
-const { value, unit } = new CSSUnitValue(42, 'px');
-// value === 10, unit === 'number'
-
-const { value, unit } = new CSSVWValue('100');
-// value === 100, unit === 'vw'
-
-const { value, unit } = new CSSPercentValue('10');
-// value === 10, unit === 'percent'
-```
-
 # CSSMathValues
 
 ```js
@@ -120,21 +102,6 @@ cssSum.toString(); // "calc(100vw + -10px)"
 ```
 
 - Similar classes exist for other CSS calc expressions, like `CSSMathNegate`, `CSSMathInvert`, `CSSMathProduct`, etc.
-
-# CSSMathValues - Nested
-
-```js
-const calculation = new CSSMathSum(
-  CSS.px(1),
-  new CSSMathNegate(
-    new CSSMathProduct(2, CSS.em(3))
-  )
-);
-
-calculation.toString(); // "calc(1px - 2 * 3em)"
-```
-
-- Calculations with multiple operators can be expressed using nested constructors.
 
 # CSSStyleValues - Beyond
 

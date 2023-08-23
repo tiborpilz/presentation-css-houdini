@@ -29,8 +29,6 @@
   }
 ```
 
-- CSS custom values can't be animated
-
 # Example - First Try
 
 <iframe style="width: 512px; height: 512px" src="https://AnimatedGradients-1--tbrpilz.repl.co"></iframe>
