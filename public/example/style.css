@@ -1,0 +1,19 @@
+.test-canvas {
+  width: 200px;
+  height: 200px;
+}
+
+.avenga-footer {
+  --progress: 0;
+  background-image: paint(avenga);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 400px;
+  transition: --progress 1s ease;
+}
+
+.avenga-footer:hover {
+  --progress: 1.0;
+}

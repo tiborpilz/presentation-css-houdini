@@ -1,12 +1,12 @@
 # CSS Painting API
 
-- Ermöglicht es, die `paint()` CSS-Funktion zu implementieren
-- Benutzt `PaintWorklets`, die einen ctx erhalten
-- Bedienung ist deswegen sehr ähnlich zu einem Canvas
+- Enables custom implementation of the `paint()` CSS-function
+- Uses `PaintWorklets`, which receive a `ctx`
+- Really similar to working with a canvas
 
 # Paint Worklet
 
-Ein Worklet nach der Houdini CSS worklet spec
+A worklet according to the CSS Houdini spec
 
 `main.js`
 ```js
@@ -30,3 +30,6 @@ registerPaint('myPainter', MyPainter)
   background-image: paint('myPainter')
 }
 ```
+# Example
+
+<iframe src="/example" style="background: white; width: 1200px; height: 50vh; margin-top: 0px"></iframe>

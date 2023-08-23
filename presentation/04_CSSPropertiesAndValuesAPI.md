@@ -1,14 +1,14 @@
-# Die Property and Values API
+# Property and Values API
 
-- Im Grunde genommen CSS custom values.
-- Aber mit Typen!
-- Ermöglicht:
-  - Typisierung
-  - Vererbung
-  - Initialwert
-  - Animationen
+- Basically CSS custom properties...
+- ...but with types!
+- enables:
+  - typing
+  - inheritance
+  - initial values
+  - animations ✨
 
-# Beispiel
+# Example
 ```css
   .box {
     --color-top: turquoise;
@@ -24,31 +24,36 @@
   }
 
   .box:hover {
-    --color-top: turquoise;
-    --color-bottom: orange;
+    --color-top: orange;
+    --color-bottom: turquoise;
   }
 ```
 
-- CSS custom values sind nicht animierbar
+- CSS custom values can't be animated
 
-# Beispiel - Versuch 1
+# Example - First Try
 
 <iframe style="width: 512px; height: 512px" src="https://AnimatedGradients-1--tbrpilz.repl.co"></iframe>
 
-# Beispiel - Erweiterung
+# Example - Extension
 
 ```js
-['--color-top', '--color-bottom'].forEach((name) => {
-  CSS.registerProperty({
-    name,
-    syntax: '<color>',
-    inherits: false,
-    initialValue: '#c0ffee',
-  })
+CSS.registerProperty({
+  name: '--color-top',
+  syntax: '<color>',
+  inherits: false,
+  initialValue: '#c0ffee',
+});
+
+CSS.registerProperty({
+  name: '--color-bottom',
+  syntax: '<color>',
+  inherits: false,
+  initialValue: '#c0ffee',
 })
 ```
 
-# Beispiel - Versuch 2
+# Example - Second Try
 
 <iframe style="width: 512px; height: 512px" src="https://AnimatedGradients--tbrpilz.repl.co"></iframe>
 

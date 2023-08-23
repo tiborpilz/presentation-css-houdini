@@ -3,4 +3,5 @@
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 
-fswatch --exclude dist --exclude .git . | xargs -n1 $SCRIPTPATH/build
+$SCRIPTPATH/build
+(fswatch --exclude public --recursive . | xargs -n1 $SCRIPTPATH/build & python3 -m http.server -d $SCRIPTPATH/../public)

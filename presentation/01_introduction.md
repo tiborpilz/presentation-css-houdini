@@ -4,25 +4,13 @@ author: Tibor Pilz
 date: 05.10.2020
 ---
 
-# CSS Houdini
 
-1. Einführung
-2. Bestandteile 
-3. Beispiele
+# CSS Houdini is:
 
-# CSS Houdini ist:
+- A collection of low-level APIs which expose parts of the CSS engine
+- Not production-ready - and might never be
 
-- Sammlung von low-level APIs, die Teile der CSS Engine freilegen
-- Nicht production-ready - Grösstenteils unterstützt in Chrome, Edge, Opera
-- Nicht unterstützt in Firefox und Safari
-
-[@mdnCSSHoudini]
-##
-
-<iframe src="https://ishoudinireadyyet.com" style="width: 1200px; height: 100vh; margin-top: -200px"></iframe>
-[@HoudiniReady]
-
-# Bestandteile
+# Components
 
 1. CSS Parser API
 1. CSS Typed OM
@@ -31,3 +19,7 @@ date: 05.10.2020
 1. Worklets
 1. CSS Layout API
 1. CSS Animation API
+
+# State of CSS Houdini
+
+<iframe src="https://ishoudinireadyyet.com" style="background: white; width: 1200px; height: 50vh; margin-top: 0px"></iframe>

@@ -1,11 +1,25 @@
 #!/usr/bin/env sh
 
-mkdir -p dist/
-pandoc -t revealjs -s presentation/**.md -o dist/index.html -i \
-  -V revealjs-url=https://unpkg.com/reveal.js@4.0.2 \
-  -V transition=none \
-  -V center=false \
-  -V width='1920' \
-  -V theme=beige \
-  --bibliography=bibliography.bib \
-  --slide-level=2
+echo "Building..."
+
+rm -rf public/
+
+mkdir -p public/
+cp -r css public/css
+cp -r presentation/images public/images
+cp -r example public/example
+
+pandoc presentation/**.md\
+  -o public/index.html\
+  -t revealjs\
+  -s\
+  --template template/index.html\
+  -V highlightjs\
+  -V highlightjs-theme:zenburn\
+  -V transition=fade\
+  -V center=false\
+  -V width=1280\
+  -V hash=true\
+  -L revealjs-codeblock.lua\
+  --css css/avenga.css\
+  -i\
