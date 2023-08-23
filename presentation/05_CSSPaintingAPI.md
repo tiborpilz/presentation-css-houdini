@@ -32,4 +32,4 @@ registerPaint('myPainter', MyPainter)
 ```
 # Example
 
-<iframe src="/example" style="background: white; width: 1200px; height: 50vh; margin-top: 0px"></iframe>
+<iframe src="./example" style="background: white; width: 1200px; height: 50vh; margin-top: 0px"></iframe>
