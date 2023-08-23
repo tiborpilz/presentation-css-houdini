@@ -5,4 +5,4 @@ CSS.registerProperty({
   initialValue: 0.0,
 })
 
-CSS.paintWorklet.addModule('avenga.js');
+CSS.paintWorklet.addModule('colorborder.js');

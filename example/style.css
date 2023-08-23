@@ -3,9 +3,9 @@
   height: 200px;
 }
 
-.avenga-footer {
+.color-footer {
   --progress: 0;
-  background-image: paint(avenga);
+  background-image: paint(colorborder);
   position: absolute;
   left: 0;
   right: 0;
@@ -14,6 +14,6 @@
   transition: --progress 1s ease;
 }
 
-.avenga-footer:hover {
+.color-footer:hover {
   --progress: 1.0;
 }

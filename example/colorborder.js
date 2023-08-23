@@ -79,7 +79,7 @@ function paintBezier(ctx, geom, perturbation, progress) {
   ctx.fill()
 }
 
-class AvengaPainter {
+class ColorBorderPainter {
   static get inputProperties() { return ['--progress'] }
 
   paint(ctx, geom, properties) {
@@ -89,4 +89,4 @@ class AvengaPainter {
   }
 }
 
-registerPaint('avenga', AvengaPainter)
+registerPaint('colorborder', ColorBorderPainter)
